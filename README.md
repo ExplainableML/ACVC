@@ -1,10 +1,14 @@
 # ACVC
-> [**Attention Consistency on Visual Corruptions for Single-Source Domain Generalization**](https://arxiv.org),            
+> [**Attention Consistency on Visual Corruptions for Single-Source Domain Generalization**](https://arxiv.org)            
 > [Ilke Cugu](https://cuguilke.github.io/), 
 > [Massimiliano Mancini](https://www.eml-unitue.de/people/massimiliano-mancini), 
 > [Yanbei Chen](https://www.eml-unitue.de/people/yanbei-chen), 
 > [Zeynep Akata](https://www.eml-unitue.de/people/zeynep-akata)        
 > *IEEE Computer Vision and Pattern Recognition Workshops (CVPRW), 2022* 
+
+<p float="center">
+  <img src="assets/ACVC_flow.pdf" width="100%" />
+</p>
 
 ## Citation
 
