@@ -68,7 +68,7 @@ Here are the steps to make it work:
 1. Download COCO 2017 [trainset](http://images.cocodataset.org/zips/train2017.zip), [valset](images.cocodataset.org/zips/val2017.zip), and [annotations](http://images.cocodataset.org/annotations/annotations_trainval2017.zip)
 2. Extract the annotations zip file into a folder named `COCO` inside your choice of `data_dir` (For example: `datasets/COCO`)
 3. Extract train and val set zip files into a subfolder named `downloads` (For example: `datasets/COCO/downloads`)
-4. Use `--first_run` argument once of while running the training script:
+4. Use `--first_run` argument once while running the training script:
 ```shell
 python run.py --loss CrossEntropy --epochs 1 --corruption_mode None --data_dir datasets --first_run --train_dataset COCO --test_datasets DomainNet:Real --print_config
 ```
