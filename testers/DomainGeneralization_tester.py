@@ -35,7 +35,7 @@ class LR_Scheduler:
             param_group['lr'] = lr
 
 class DomainGeneralization_tester:
-    def __init__(self, train_dataset, test_dataset, img_mean_mode=None, distillation=False, wait=False, data_dir=None):
+    def __init__(self, train_dataset, test_dataset, img_mean_mode=None, distillation=False, wait=False, data_dir=None, first_run=False):
         """
         Conditional constructor to enable creating testers without immediately triggering the dataset loader.
 
@@ -47,6 +47,7 @@ class DomainGeneralization_tester:
             :param wait: (bool) If True, then the constructor will onyl create the instance and
                                 wait for manual activation to actually load the dataset
             :param data_dir: (str) relative filepath to datasets
+            :param first_run: (bool) to initiate COCO benchmark preprocessing
         """
         # Base class variables
         ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -57,7 +58,8 @@ class DomainGeneralization_tester:
         self.training_set_size = None
         self.img_mean_mode = img_mean_mode
         self.distillation = distillation
-        self.data_dir = os.path.join(ROOT_DIR, "../../datasets") if data_dir is None else data_dir
+        self.data_dir = os.path.join(ROOT_DIR, "../../datasets") if data_dir is None else "../%s" % data_dir
+        self.first_run = first_run
 
         # Loss func init
         self.classification_loss = None
@@ -77,7 +79,7 @@ class DomainGeneralization_tester:
 
         # Deploy the dataset
         if "COCO" == self.train_dataset:
-            self.dataset = Datasets.load_COCO(first_run=False, train=True, img_mean_mode=self.img_mean_mode, distillation=self.distillation, data_dir=self.data_dir)
+            self.dataset = Datasets.load_COCO(first_run=self.first_run, train=True, img_mean_mode=self.img_mean_mode, distillation=self.distillation, data_dir=self.data_dir)
             self.x_test, self.y_test = Datasets.load_COCO(first_run=False, train=False, img_mean_mode=self.img_mean_mode, data_dir=self.data_dir)
 
         elif "FullDomainNet" in self.train_dataset:

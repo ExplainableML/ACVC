@@ -33,30 +33,30 @@ tqdm~=4.58.0
 pycocotools~=2.0.0
 ```
 
-- We also include a YAML script `./acvc-pytorch.yml` that is prepared for an easy Anaconda environment setup. 
+- We also include a YAML script `acvc-pytorch.yml` that is prepared for an easy Anaconda environment setup. 
 
-- One can also use the `./requirements.txt` if one knows one's craft.
+- One can also use the `requirements.txt` if one knows one's craft.
 
 ## Training
 
-Training is done via `./run.py`. To get the up-to-date list of commands:
+Training is done via `run.py`. To get the up-to-date list of commands:
 ```shell
 python run.py --help
 ```
 
-We include a sample script `./run_experiments.sh` for a quick start.
+We include a sample script `run_experiments.sh` for a quick start.
 
 ## Analysis
 
-The benchmark results are prepared by `./analysis/GeneralizationExpProcessor.py`, which outputs LaTeX tables of the cumulative results in a .tex file.
+The benchmark results are prepared by `analysis/GeneralizationExpProcessor.py`, which outputs LaTeX tables of the cumulative results in a .tex file.
 
 - For example:
-```
+```shell
 python GeneralizationExpProcessor.py --path generalization.json --to_dir ./results --image_format pdf
 ```
 
 - You can also run distributed experiments, and merge the results later on:
-```
+```shell
 python GeneralizationExpProcessor.py --merge_logs generalization_gpu0.json generalization_gpu1.json
 ```
 
@@ -65,7 +65,22 @@ python GeneralizationExpProcessor.py --merge_logs generalization_gpu0.json gener
 COCO benchmark is especially useful for further studies on ACVC since it includes segmentation masks per image.
 
 Here are the steps to make it work:
-- TODO
+1. Download COCO 2017 [trainset](http://images.cocodataset.org/zips/train2017.zip), [valset](images.cocodataset.org/zips/val2017.zip), and [annotations](http://images.cocodataset.org/annotations/annotations_trainval2017.zip)
+2. Extract the annotations zip file into a folder named `COCO` inside your choice of `data_dir` (For example: `datasets/COCO`)
+3. Extract train and val set zip files into a subfolder named `downloads` (For example: `datasets/COCO/downloads`)
+4. Use `--first_run` argument once of while running the training script:
+```shell
+python run.py --loss CrossEntropy --epochs 1 --corruption_mode None --data_dir datasets --first_run --train_dataset COCO --test_datasets DomainNet:Real --print_config
+```
+6. If everything works fine, you will see `train2017` and `val2017` folders under `COCO`
+7. Both folders must contain 10 subfolders that belong to shared classes between COCO and DomainNet   
+8. Now, try running ACVC as well:
+```shell
+python run.py --loss CrossEntropy AttentionConsistency --epochs 1 --corruption_mode acvc --data_dir datasets --train_dataset COCO --test_datasets DomainNet:Real --print_config
+```
+9. All good? Then, you are good to go with the COCO section of `run_experiments.sh` to run multiple experiments
+10. That's it! 
+
 
 ## References
 

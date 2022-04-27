@@ -14,7 +14,7 @@ datasets_str = """
 
 def create_config_file(config):
     # Default configurations
-    config["DEFAULT"] = {"version": "1.0.0",
+    config["DEFAULT"] = {"version": "1.0.1",
                          "model": "resnet",
                          "depth": 18,
                          "lr": 4e-3,
@@ -32,6 +32,7 @@ def create_config_file(config):
                          "test_datasets": "None",
                          "print_config": True,
                          "data_dir": "../../datasets",
+                         "first_run": False,
                          "model_dir": ".",
                          "save_model": False,
                          "knowledge_distillation": False,
@@ -63,6 +64,7 @@ if __name__ == '__main__':
     parser.add_argument("--test_datasets", help="list of test sets for domain generalization experiments", nargs="+")
     parser.add_argument("--to_path", help="filepath to save models with custom names", type=str)
     parser.add_argument("--data_dir", help="filepath to save datasets", type=str)
+    parser.add_argument("--first_run", help="to initiate COCO preprocessing", action="store_true")
     parser.add_argument("--model_dir", help="filepath to save models", type=str)
     parser.add_argument("--print_config", help="prints the active configurations", action="store_true")
     parser.add_argument("--save_model", help="to save the trained models", action="store_true")
@@ -104,6 +106,7 @@ if __name__ == '__main__':
         to_path = config["to_path"] if "to_path" in config else None
         data_dir = config["data_dir"]
         model_dir = config["model_dir"]
+        FIRST_RUN = config["first_run"]
         PRINT_CONFIG = config.getboolean("print_config")
         SAVE_MODEL = config.getboolean("save_model")
         KNOWLEDGE_DISTILLATION = config.getboolean("knowledge_distillation")
@@ -183,6 +186,7 @@ if __name__ == '__main__':
                                          img_mean_mode=img_mean_mode,
                                          data_dir=data_dir,
                                          distillation=KNOWLEDGE_DISTILLATION,
+                                         first_run=FIRST_RUN,
                                          wait=True)
     tester.activate() # manually trigger the dataset loader
     n_classes = tester.get_n_classes()
