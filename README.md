@@ -7,7 +7,7 @@
 > *IEEE Computer Vision and Pattern Recognition Workshops (CVPRW), 2022* 
 
 <p float="center">
-  <img src="assets/ACVC_flow.pdf" width="100%" />
+  <img src="assets/ACVC_flow.png" width="100%" />
 </p>
 
 ## Citation
@@ -19,7 +19,6 @@ If you use these codes in your research, please cite:
 ```
   
 ## Dependencies
-- Prerequisites:
 ```
 torch~=1.5.1+cu101
 numpy~=1.19.5
@@ -31,6 +30,7 @@ scikit-learn~=0.24.1
 scipy~=1.6.1
 imagecorruptions~=1.1.2
 tqdm~=4.58.0
+pycocotools~=2.0.0
 ```
 
 - We also include a YAML script `./acvc-pytorch.yml` that is prepared for an easy Anaconda environment setup. 
