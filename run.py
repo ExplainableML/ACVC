@@ -181,6 +181,7 @@ if __name__ == '__main__':
     tester = DomainGeneralization_tester(train_dataset=train_dataset,
                                          test_dataset=test_datasets,
                                          img_mean_mode=img_mean_mode,
+                                         data_dir=data_dir,
                                          distillation=KNOWLEDGE_DISTILLATION,
                                          wait=True)
     tester.activate() # manually trigger the dataset loader
