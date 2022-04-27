@@ -7,7 +7,7 @@
 > *IEEE Computer Vision and Pattern Recognition Workshops (CVPRW), 2022* 
 
 <p float="center">
-  <img src="assets/ACVC_flow.pdf" width="100%" />
+  <img src="assets/ACVC_flow.png" width="100%" />
 </p>
 
 ## Citation
