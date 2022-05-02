@@ -120,7 +120,12 @@ python run.py --loss CrossEntropy AttentionConsistency --epochs 1 --corruption_m
 If you use these codes in your research, please cite:
 
 ```bibtex
-
+@article{cugu2022attention,
+  title={Attention Consistency on Visual Corruptions for Single-Source Domain Generalization},
+  author={Cugu, Ilke and Mancini, Massimiliano and Chen, Yanbei and Akata, Zeynep},
+  journal={arXiv preprint arXiv:2204.13091},
+  year={2022}
+}
 ```
 
 ## References
